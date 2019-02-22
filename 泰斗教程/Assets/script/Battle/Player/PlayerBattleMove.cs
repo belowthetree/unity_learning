@@ -13,6 +13,9 @@ public class PlayerBattleMove : MonoBehaviour {
         float v = Input.GetAxis("Vertical");
         Vector3 vec = this.GetComponent<Rigidbody>().velocity;
 
+        if (!ani.GetCurrentAnimatorStateInfo(1).IsName("New State"))
+            return;
+
         if (Mathf.Abs(h) > 0.05f || Mathf.Abs(v) > 0.05f)
         {
             ani.SetBool("move", true);

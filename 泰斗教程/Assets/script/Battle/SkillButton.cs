@@ -31,17 +31,15 @@ public class SkillButton : MonoBehaviour {
 
     public void OnPress()
     {
-        if (isPress == false&&mask!=null)
+        if (mask!=null)
         {
-            isPress = true;
-            playerAnimation.OnAttackButtonClick(isPress, pos);
+            playerAnimation.OnAttackButtonClick(pos);
             coldTimer = coldTime;
             this.GetComponent<Button>().interactable = false;
         }
-        else if(isPress&&mask==null)
+        else
         {
-            isPress = true;
-            playerAnimation.OnAttackButtonClick(isPress, pos);
+            playerAnimation.OnAttackButtonClick(pos);
         }
 
     }

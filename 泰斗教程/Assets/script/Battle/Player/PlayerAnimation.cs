@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour {
 
-    public void OnAttackButtonClick(bool isPress, PosType pos)
-    {
+    public Animator anim;
 
+    public void OnAttackButtonClick(PosType pos)
+    {
+        if (pos == PosType.Basic)
+            anim.SetTrigger("Attack");
+        else
+        {
+            anim.SetTrigger("Skill" + (int)pos);
+        }
     }
 }
