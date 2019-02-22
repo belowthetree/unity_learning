@@ -8,11 +8,7 @@ public class PlayerAttack : MonoBehaviour {
 
     void Start()
     {
-        PlayerEffect[] peArray = this.GetComponentsInChildren<PlayerEffect>();
-        foreach(PlayerEffect pe in peArray)
-        {
-            effectDict.Add(pe.gameObject.name, pe);
-        }
+
     }
 
 	//0 normal skill1 skill2 skill3
