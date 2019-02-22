@@ -38,5 +38,11 @@ public class SkillButton : MonoBehaviour {
             coldTimer = coldTime;
             this.GetComponent<Button>().interactable = false;
         }
+        else if(isPress&&mask==null)
+        {
+            isPress = true;
+            playerAnimation.OnAttackButtonClick(isPress, pos);
+        }
+
     }
 }
