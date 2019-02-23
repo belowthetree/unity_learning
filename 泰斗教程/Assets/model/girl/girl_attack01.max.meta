@@ -192,7 +192,7 @@ ModelImporter:
       events:
       - time: 0.3333333
         functionName: Attack
-        data: normal,attack1,skill3_3,1,0
+        data: normal,attack1,skill3_3,0,0
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
