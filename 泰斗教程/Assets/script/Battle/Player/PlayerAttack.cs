@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour {
     private Dictionary<string, PlayerEffect> effectDict = new Dictionary<string, PlayerEffect>();
     public float distanceAttackForward = 2;
     public float distanceAttackAround = 2;
+    public int[] damageArray = new int[] { 20, 30, 30, 30 };
     public enum AttackRange
     {
         Forward,
@@ -22,7 +23,7 @@ public class PlayerAttack : MonoBehaviour {
         }
     }
 
-	//0 normal skill1 skill2 skill3
+    //0 normal skill1 skill2 skill3
     //1 effect name
     //2 sound
     //3 move forward
@@ -42,6 +43,15 @@ public class PlayerAttack : MonoBehaviour {
         {
             gameObject.GetComponent<Transform>().Translate(Vector3.forward * moveForward);
         }
+        string posType = proArray[0];
+        if (posType == "normal")
+        {
+            ArrayList array = GetEnemyInAttackRange(AttackRange.Forward);
+            foreach(GameObject go in array)
+            {
+                go.SendMessage("TakeDamage", damageArray[0] + "," + proArray[3] + "," + proArray[4]);
+            }
+        }
     }
 
     void ShowPlayerEffect(string effectName)
@@ -57,15 +67,16 @@ public class PlayerAttack : MonoBehaviour {
     ArrayList GetEnemyInAttackRange(AttackRange attackRange)
     {
         ArrayList arrayList = new ArrayList();
-        if (attackRange==AttackRange.Around)
+        if (attackRange==AttackRange.Forward)
         {
             foreach(GameObject go in TranscriptManager.instance.enemyList)
             {
-                Vector3 pos = transform.InverseTransformPoint(go.transform.position);
-                if (pos.z > -0.5f)
+                Vector3 pos = this.transform.position - go.transform.position;
+                pos = transform.InverseTransformDirection(pos);
+                if (pos.z < 0.3f)
                 {
-                    float distance = Vector3.Distance(Vector3.zero, pos);
-                    if(distance < distanceAttackForward)
+                    Debug.Log(pos);
+                    if(pos.magnitude < distanceAttackForward)
                     {
                         arrayList.Add(go);
                     }
