@@ -22,9 +22,11 @@ public class Enemy : MonoBehaviour {
         //受伤动画
         gameObject.GetComponent<Animation>().Play("takedamage");
         //后退和浮空
-        float backDistance = float.Parse(proArray[1]);
-        float jumpHeight = float.Parse(proArray[2]);
-        gameObject.transform.Translate(this.gameObject.transform.TransformDirection(TranscriptManager.instance.player.transform.forward * backDistance) + Vector3.up * jumpHeight);
+        float backDistance = float.Parse(proArray[1]) * 0.1f;
+        float jumpHeight = float.Parse(proArray[2]) * 0.1f;
+        ItweenMove.instance.Translate(this.gameObject,
+            this.gameObject.transform.TransformDirection(TranscriptManager.instance.player.transform.forward * backDistance) + Vector3.up * jumpHeight,
+            0.5f);
         //出血特效
         Destroy(GameObject.Instantiate(damageEffectPrefab, transform.position + new Vector3(0, 1f, 0), transform.rotation), 2f);
         if (hp <= 0)

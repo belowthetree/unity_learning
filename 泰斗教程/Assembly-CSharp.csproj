@@ -156,6 +156,7 @@
      <Compile Include="Assets\scene\startmenu\script\spinWithMouse.cs" />
      <Compile Include="Assets\scene\startmenu\script\startMenuController.cs" />
      <Compile Include="Assets\script\Battle\CameraMoveBattle.cs" />
+     <Compile Include="Assets\script\Battle\ItweenMove.cs" />
      <Compile Include="Assets\script\Battle\Player\PlayerAnimation.cs" />
      <Compile Include="Assets\script\Battle\Player\PlayerAttack.cs" />
      <Compile Include="Assets\script\Battle\Player\PlayerBattleMove.cs" />

@@ -190,9 +190,16 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6507042
+      - time: 0.6793249
+        functionName: ShowEffectDevilHand
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6455696
         functionName: Attack
-        data: normal,attack3,skill3_1,1,0
+        data: normal,attack3,skill3_1,0.5,1
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

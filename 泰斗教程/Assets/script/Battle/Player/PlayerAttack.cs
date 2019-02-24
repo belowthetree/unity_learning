@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour {
 
     private Dictionary<string, PlayerEffect> effectDict = new Dictionary<string, PlayerEffect>();
+    public PlayerEffect[] effectArray;
     public float distanceAttackForward = 2;
     public float distanceAttackAround = 2;
     public int[] damageArray = new int[] { 20, 30, 30, 30 };
@@ -20,6 +21,27 @@ public class PlayerAttack : MonoBehaviour {
         foreach(PlayerEffect pe in peArray)
         {
             effectDict.Add(pe.gameObject.name, pe);
+        }
+        foreach(PlayerEffect pe in effectArray)
+        {
+            effectDict.Add(pe.gameObject.name, pe);
+        }
+    }
+
+    public void ShowEffectDevilHand()
+    {
+        string effectName = "DevilHandMobile";
+        PlayerEffect pe;
+        effectDict.TryGetValue(effectName, out pe);
+        ArrayList array = GetEnemyInAttackRange(AttackRange.Forward);
+        foreach(GameObject go in array)
+        {
+            RaycastHit hit;
+            bool collider = Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 10f, LayerMask.GetMask("Ground"));
+            if (collider)
+            {
+                GameObject.Instantiate(pe, go.transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -41,7 +63,7 @@ public class PlayerAttack : MonoBehaviour {
         float moveForward = float.Parse(proArray[3]);
         if (moveForward > 0.1f)
         {
-            gameObject.GetComponent<Transform>().Translate(Vector3.forward * moveForward);
+            ItweenMove.instance.Translate(this.gameObject, Vector3.forward * moveForward, 0.3f);
         }
         string posType = proArray[0];
         if (posType == "normal")
